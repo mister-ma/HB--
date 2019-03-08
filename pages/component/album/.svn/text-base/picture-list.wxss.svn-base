@@ -1,0 +1,25 @@
+.container{
+  width: 100%;
+  border-top:10rpx solid #f0f0f0;
+}
+image{
+  /* height: auto; */
+  background: #F0F0F0;
+}
+.img-box{
+   width: 100%;
+   padding-top:30rpx;
+   overflow: hidden;
+}
+.album-item-left,.album-item-right{
+  display: block;
+  float: left;
+  width: 47%;
+  margin-left: 2%;
+}
+.album-item-picture{
+  width: 100%;
+  border-radius: 10rpx;
+  display: block;
+  margin-bottom: 15rpx; 
+}

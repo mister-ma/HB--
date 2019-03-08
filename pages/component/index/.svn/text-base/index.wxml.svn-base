@@ -1,0 +1,35 @@
+<!--home.wxml-->
+<import src="../../common/head.wxml" />
+<import src="../../common/foot.wxml" />
+
+<template name="article-item">
+  <view class="article-item">
+    <image class="article-item-picture" src="{{Picture}}" mode="widthFix"></image>
+    <text class="article-item-title">{{Title}}</text>
+    <view wx:if="{{Comments}}" class="article-item-comment">
+      <image src="../../../images/icon_comment.png" class="comment-icon"></image>
+      <block wx:for="{{Comments}}" wx:for-item="item" wx:key="idx">
+        <view class="article-comment-view">
+          <text class="comment-username">{{item.User.NickName}}</text>
+          <text class="comment-content">{{item.Content}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>
+
+<view class="container">
+  <view class="page-body">
+    <block wx:if="{{loading}}">
+      <view style="width:100%; height:{{wHeight}}px; overflow:hidden; background:#222;">
+        <image src="../../../images/index_bg.jpg" class="index_bg" mode="aspectFill"></image>
+      </view>
+    </block>
+    <block wx:for="{{articleList}}" wx:for-item="item" wx:key="idx">
+      <view catchtap="onArticleItemTap" data-articleId="{{item.ArticleID}}">
+        <template is="article-item" data="{{...item}}" />
+        <view class="article-item-bar"></view>
+      </view>
+    </block>
+  </view>
+</view>

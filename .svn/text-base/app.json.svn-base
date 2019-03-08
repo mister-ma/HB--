@@ -1,0 +1,66 @@
+{
+  "pages": [
+    "pages/component/index/index",
+    "pages/component/index/article-detail",
+    "pages/component/error/error",
+    "pages/component/user/user-index",
+    "pages/component/user/user-index-vote-image",
+    "pages/component/vote/vote-list",
+    "pages/component/vote/vote-image",
+    "pages/component/vote/vote-progress",
+    "pages/component/vote/vote-participate",
+    "pages/component/vote/vote-end",
+    "pages/component/vote/vote-participate-list",
+    "pages/component/vote/vote-upload-image",
+    "pages/component/album/favorite",
+    "pages/component/album/picture-list",
+    "pages/component/demo/demo"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "街拍",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fff",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#fff",
+    "selectedColor": "#db3944",
+    "borderStyle": "black",
+    "backgroundColor": "#000",
+    "list": [
+      {
+        "pagePath": "pages/component/index/index",
+        "iconPath": "images/icon_component.png",
+        "selectedIconPath": "images/icon_component_HL.png",
+        "text": "街拍"
+      },
+      {
+        "pagePath": "pages/component/album/favorite",
+        "iconPath": "images/icon_zuiai.png",
+        "selectedIconPath": "images/icon_zuiai_HL.png",
+        "text": "最爱"
+      },
+      {
+        "pagePath": "pages/component/vote/vote-list",
+        "iconPath": "images/icon_API.png",
+        "selectedIconPath": "images/icon_API_HL.png",
+        "text": "投票"
+      },
+      {
+        "pagePath": "pages/component/user/user-index",
+        "iconPath": "images/icon_User.png",
+        "selectedIconPath": "images/icon_User_HL.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false
+}

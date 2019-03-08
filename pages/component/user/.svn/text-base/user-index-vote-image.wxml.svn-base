@@ -1,0 +1,86 @@
+<!--pages/component/vote/vote-image.wxml-->
+
+<!-- 查看审核中图片时底部 -->
+<template name="look-self-examine-img">
+  <view class="look-examine-img-form">
+    当前图片正在审核中，暂时无法投票
+    <image src="../../../images/" mode="widthFix" class="look-self-examine-shen"></image>
+  </view>
+</template>
+
+<view class="container">
+  <view class="page-body">
+
+    <swiper current="{{swiperCur}}" class="vote-swiper" bindchange='onSwiperChange'>
+      <block wx:for="{{pictureList}}" wx:for-item="item" wx:for-index="index" wx:key="idx">
+        <swiper-item class="vote-swiper-item">
+          <view class="vote-img-box" style="height:{{boxHeight}}px">
+            <view class="vote-img-box-content">
+              <!-- 单图 -->
+              <image src="{{item.Picture}}" mode="widthFix" class="vote-img-box-pic"></image>
+              <!-- 图片序号 -->
+              <text class="vote-img-boxe-num" wx:if="{{item.VoteDetailID}}">{{item.VoteDetailID}}</text>
+            </view>
+            <!-- 图片描述 -->
+            <view class="vote-img-des {{opacity?'on':bull}}">
+              <text wx:if="{{item.FileDescription}}">{{item.FileDescription}}</text>
+              <view class='vote-img-cha' catchtap="onSliderChaTap">
+                <image src="../../../images/u268.png" class="vote-img-box-cha"></image>
+              </view>
+            </view>
+          </view>
+
+          <!-- 底部 -->
+          <view class="vote-img-footer {{isIponeX?'ipone':''}}">
+            <block wx:if="{{item.Flag == 1}}">
+              <text class="vote-img-footer-text">当前图片正在审核中，暂时无法投票</text>
+              <image src="../../../images/icon_shenhe.png" class="vote-img-footer-shen"></image>
+            </block>
+            <block wx:elif="{{item.Flag == 2}}">
+              <view class="vote-img-footer-error">
+                <block wx:if="{{pictureList.length<3 && voteFlag == 2}}">
+                  <text>Sorry，图片审核失败，请删除后重新上传</text>
+                </block>
+                <block wx:else>
+                  <text>Sorry，图片审核失败</text>
+                </block>
+              </view>
+            </block>
+            <block wx:else>
+              <view class="look-left">
+                <text class="look-left-rank">排名：{{item.VoteRank}}</text>
+                <text>{{item.VotePraiseCount}}人喜欢</text>
+              </view>
+              <view class="look-right" wx:if="{{voteFlag!=4 && voteFlag!=3}}">
+                <button open-type="share">
+                  <image src="../../../images/icon_fenxiang.png" class='look-right-contacts'></image>
+                </button>
+                <form bindsubmit="onShareToTimeline" report-submit='true'>
+                  <button form-type="submit" style="margin-left:82rpx;">
+                    <image src="../../../images/icon_pengyouquan.png" class="look-right-timeline"></image>
+                  </button>
+                </form>
+              </view>
+            </block>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <block wx:if="{{PreFileID}}">
+      <image catchtap="onChangePrevPicture" src="../../../images/u263.png" class="swiper-btn-left {{isIponeX?'ipone':''}}"></image>
+    </block>
+    <block wx:if="{{NextFileID}}">
+      <image catchtap="onChangeNextPicture" src="../../../images/u264.png" class="swiper-btn-right {{isIponeX?'ipone':''}}"></image>
+    </block>
+
+    <!-- 转发到朋友圈的图片 -->
+    <view wx:if="{{shareTimeLine}}" class="share-vote">
+      <view class="share-vote-content">
+        <image wx:if="{{shareVotePicture}}" src="{{shareVotePicture}}" class="share-vote-pic"></image>
+        <text wx:if="{{saveImageToAlbumFinish}}" class="share-vote-text">图片已保存到相册，可分享朋友圈</text>
+        <image src="../../../images/icon_guanbifenxiangtanceng.png" class="share-vote-cha" catchtap='onShareChaTap'></image>
+      </view>
+    </view>
+  </view>
+</view>

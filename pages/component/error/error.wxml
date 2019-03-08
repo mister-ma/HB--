@@ -1,0 +1,7 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="page-body">
+    <image class="error-image" src="../../../images/network_error.jpg"></image>
+    <view class="error-text">网络繁忙，请稍后再试</view>
+  </view>
+</view>

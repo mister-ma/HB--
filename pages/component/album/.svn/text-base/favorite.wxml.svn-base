@@ -1,0 +1,83 @@
+
+
+<!-- layout1,1 -->
+<template name="layout-1-1">
+  <view class="album-item">
+    <image wx:if="{{Pictures[0]}}" src="{{Pictures[0].Picture}}" class="album-item-pic" mode="widthFix"></image>
+    <image wx:if="{{Pictures[1]}}" src="{{Pictures[1].Picture}}" class="album-item-pic" mode="widthFix"></image>
+    <text class="album-item-title">{{AlbumName}}</text>
+    <text class="album-item-user">by {{NickName}}</text>
+  </view>
+</template>
+
+<!-- layout1,2 -->
+<template name="layout-1-2">
+  <view class="album-item">
+    <image wx:if="{{Pictures[0]}}" src="{{Pictures[0].Picture}}" class="album-item-pic" mode="widthFix"></image>
+    <view class="album-item-img-bottom">
+      <image wx:if="{{Pictures[1]}}" src="{{Pictures[1].Picture}}" class="album-item-left-pic" mode="widthFix"></image>
+      <image wx:if="{{Pictures[2]}}" src="{{Pictures[2].Picture}}" class="album-item-right-pic" mode="widthFix"></image>
+    </view>
+    <text class="album-item-title">{{AlbumName}}</text>
+    <text class="album-item-user">by {{NickName}}</text>
+  </view>
+</template>
+
+<!-- layout2,1 -->
+<template name="layout-2-1">
+  <view class="album-item">
+    <view class="album-item-img-top">
+      <image wx:if="{{Pictures[0]}}" src="{{Pictures[0].Picture}}" class="album-item-left-pic" mode="widthFix"></image>
+      <image wx:if="{{Pictures[1]}}" src="{{Pictures[1].Picture}}" class="album-item-right-pic" mode="widthFix"></image>
+    </view>
+    <image wx:if="{{Pictures[2]}}" src="{{Pictures[2].Picture}}" class="album-item-pic" mode="widthFix"></image>
+    <text class="album-item-title">{{AlbumName}}</text>
+    <text class="album-item-user">by {{NickName}}</text>
+  </view>
+</template>
+
+
+
+<view class="container">
+  <view class="page-body">
+    <view class="list-left">
+      <block wx:for="{{albumLeft}}" wx:for-item="item" wx:key="idx">
+        <block wx:if="{{item.Layout == '1,1'}}">
+          <view catchtap="onAlbumItemTap" data-albumId="{{item.AlbumID}}">
+            <template is="layout-1-1" data="{{...item}}" />
+          </view>
+        </block>
+        <block wx:elif="{{item.Layout == '1,2'}}">
+          <view catchtap="onAlbumItemTap" data-albumId="{{item.AlbumID}}">
+            <template is="layout-1-2" data="{{...item}}" />
+          </view>
+        </block>
+        <block wx:else>
+          <view catchtap="onAlbumItemTap" data-albumId="{{item.AlbumID}}">
+            <template is="layout-2-1" data="{{...item}}" />
+          </view>
+        </block>
+      </block>
+    </view>
+    <view class="list-right">
+      <block wx:for="{{albumRight}}" wx:for-item="item" wx:key="idx">
+        <block wx:if="{{item.Layout == '1,1'}}">
+          <view catchtap="onAlbumItemTap" data-albumId="{{item.AlbumID}}">
+            <template is="layout-1-1" data="{{...item}}" />
+          </view>
+        </block>
+        <block wx:elif="{{item.Layout == '1,2'}}">
+          <view catchtap="onAlbumItemTap" data-albumId="{{item.AlbumID}}">
+            <template is="layout-1-2" data="{{...item}}" />
+          </view>
+        </block>
+        <block wx:else>
+          <view catchtap="onAlbumItemTap" data-albumId="{{item.AlbumID}}">
+            <template is="layout-2-1" data="{{...item}}" />
+          </view>
+        </block>
+      </block>
+    </view>
+    
+  </view>
+</view>

@@ -1,0 +1,20 @@
+
+
+<view class="container">
+  <block wx:if="{{albumInfo}}">
+      <!-- <text class="album-title">{{albumInfo.AlbumName}}</text>
+      <text class="album-nickname">by {{albumInfo.NickName}}</text> -->
+      <view catchtap="onPictureItemTap" data-albumId="{{albumInfo.AlbumID}}" class="img-box">
+        <view wx:if="{{listLeft}}" class="album-item-left">
+          <block wx:for="{{listLeft}}" wx:for-item="item" wx:key="idx">
+            <image class="album-item-picture" src="{{item.ThumbnailPicture}}" mode="widthFix" catchtap="onPreviewImg" data-src="{{item.Picture}}"></image>
+          </block>
+        </view>
+        <view wx:if="{{listRight}}" class="album-item-right">
+          <block wx:for="{{listRight}}" wx:for-item="item" wx:key="idx">
+            <image class="album-item-picture" src="{{item.ThumbnailPicture}}" mode="widthFix" catchtap="onPreviewImg" data-src="{{item.Picture}}"></image>
+          </block>
+        </view>
+      </view>
+    </block>
+</view>

@@ -1,0 +1,19 @@
+.container {
+  display: block;
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+  padding-bottom: 55px;
+}
+
+.error-image {
+  display: block;
+  width: 163rpx;
+  height: 243rpx;
+  margin: 160px auto 20px;
+}
+.error-text {
+  display: block;
+}

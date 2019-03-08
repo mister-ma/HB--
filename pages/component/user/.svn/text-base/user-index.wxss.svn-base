@@ -1,0 +1,144 @@
+/* pages/component/user/user-index.wxss */
+/* 用户信息区域样式 */
+.user-info{
+  width: 100%;
+  height:300rpx;
+  position: relative;
+}
+.user-info-bg{
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: grayscale(100%);
+}
+.user-info-inner{
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%; 
+  height:100%; 
+  padding-top:1px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.8); 
+}
+.user-info-avatar{
+  display: block;
+  width: 120rpx;
+  height:120rpx;
+  border-radius: 50%;
+  margin: 60rpx auto 26rpx;
+}
+.user-info-nickname{
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 28rpx;
+  color:#000;
+}
+
+.user-participate-font{
+  font-size: 40rpx;
+  text-align: center;
+  font-weight: bolder;
+  margin: 40rpx 0 30rpx;
+}
+/* 投票进行中模板样式 */
+.user-vote-voting,.user-vote-voted{
+  display: block;
+  overflow: hidden;
+  margin:0 0 30rpx 30rpx; 
+}
+.user-vote-info{
+  display: block;
+  overflow: hidden;
+  font-size:30rpx;
+  color:#000;
+  margin-right: 40rpx;
+  text-indent: 0.2em;
+  line-height: 1.5;
+}
+.user-voting-info{
+  color:#ff0000; 
+  font-weight: bold;
+}
+.user-voting-img{
+  display: inline-block;
+  position: relative;
+  margin-right: 30rpx;
+  margin-top: 25rpx;
+  width: 210rpx;
+  height:210rpx; 
+}
+.user-vote-img{
+  width: 210rpx;
+  height:210rpx; 
+   border-radius: 15rpx;
+}
+.user-vote-cha{
+  position: absolute;
+  top:-15rpx;
+  right:-15rpx;
+  width: 40rpx;
+  height:40rpx;
+}
+.user-vote-examine{
+  position: absolute;
+  /* bottom:-20rpx;
+  left:-60.4rpx; */
+  bottom:0;
+  left:0;
+  height: 80rpx;
+  padding: 0 40rpx;
+  background:#3cd15d;
+  border-radius: 13px;
+  font-size: 40rpx;
+  text-align: center;
+  line-height:80rpx; 
+  color:#fff;
+  transform: scale(0.5);
+  transform-origin: 0% 100%;
+  white-space: nowrap;
+}
+.user-vote-examine.error{
+  background: rgba(0,0,0,.9);
+  /* left:-70.4rpx; */
+}
+.user-vote-examine.wait{
+  background: rgba(0,0,0,.5);
+  /* left:-50.4rpx; */
+}
+/* 投票已结束模板样式 */
+.user-voted-info{
+  color:#777;
+}
+.user-vote-ranking{
+  position: absolute;
+  bottom:10rpx;
+  right:10rpx;
+  width:80rpx;
+  height:80rpx;
+}
+
+
+/* 没有参赛图片时样式 */
+.user-nolist-img{
+  display: block;
+  width: 160rpx;
+  height:160rpx;
+  margin: 180rpx auto 35rpx;
+}
+.user-nolist-text{
+  width: 100%;
+  text-align: center;
+  font-size: 32rpx;
+}
+.user-nolist-btn{
+  width: 296rpx;
+  height: 76rpx;
+  border:2rpx solid #db3944; 
+  color:#db3944;
+  line-height: 76rpx;
+  text-align: center;
+  margin: 60rpx auto 0;
+  border-radius:10rpx; 
+}

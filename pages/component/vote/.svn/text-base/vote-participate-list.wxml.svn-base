@@ -1,0 +1,46 @@
+<!--pages/component/vote/vote-participate-list.wxml-->
+<view class="contanier" style="height:{{boxHeight}}rpx;">
+  <view class="page-bg">
+    <image src="../../../images/vote_bg2.jpg" class="bg"></image>
+  </view>
+  <!-- 搜索 -->
+  <!-- <view class="search-vote-box"> 
+      -->
+  <form bindsubmit="onSearchVotePicture" report-submit='true' class="search-vote-picture">
+    <image src="../../../images/vote_bg2.jpg" class="bg2" mode="top"></image>
+    <input type="number" id="searchOrderId" placeholder="输入图片序号，快速查看" bindinput="orderIdInput" placeholder-style="color:#9b9b9b;" />
+    <button form-type="submit" class="search-orderId-btn">查找</button>
+  </form>
+  <!-- </view>  -->
+
+  <view class="page-body">
+    <!-- <text class="participate-list-title">为你喜欢的图片投上一票</text> -->
+    <!-- <scroll-view class="participate-list-scroll" scroll-y="true" style="height:{{boxHeight}}px;">   -->
+    <view class="participate-list-scroll">
+      <view class="scroll-left">
+        <block wx:for="{{left}}" wx:for-item="item" wx:key="idx" wx:for-index="index">
+          <view class="participate-list-item">
+            <image src="{{item.Picture}}" mode="widthFix" class="participate-list-img" catchtap='onParticipateItemImg' data-index="{{item.Index}}" data-voteid="{{voteId}}" data-fileid="{{item.FileID}}"></image>
+            <text class="participate-list-order">{{item.VoteDetailID}}</text>
+          </view>
+        </block>
+      </view>
+      <view class="scroll-right">
+        <block wx:for="{{right}}" wx:for-item="item" wx:key="idx" wx:for-index="index">
+          <view class="participate-list-item">
+            <image src="{{item.Picture}}" mode="widthFix" class="participate-list-img" catchtap='onParticipateItemImg' data-index="{{item.Index}}" data-voteid="{{voteId}}" data-fileid="{{item.FileID}}"></image>
+            <text class="participate-list-order">{{item.VoteDetailID}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!-- </scroll-view>   -->
+    <!-- 参赛 -->
+    <block wx:if="{{!participateEnd}}">
+      <form bindsubmit="onGotoActiveVote" report-submit='true' class="participate-list-vote {{isIponeX?'iponex':''}}">
+        <button form-type="submit" class="participate-list-btn">我要参与</button>
+        <image class="participate-list-vote-img" src="../../../images/icon_woyaocansai.png"></image>
+      </form>
+    </block>
+  </view>
+</view>

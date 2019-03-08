@@ -1,0 +1,28 @@
+<!--home.wxml-->
+<import src="../../common/head.wxml" />
+<import src="../../common/foot.wxml" />
+
+<template name="vote-item">
+  <!-- 投票状态 -->
+  <block wx:if="{{VoteFlag != 4}}">
+    <text class="vote-item-flag">{{VoteFlagName}}</text>
+  </block>
+  <block wx:else>
+    <text class="vote-item-flag vote-item-flaged">{{VoteFlagName}}</text>
+  </block>
+  <!-- 活动标题 -->
+  <text class="vote-item-title">{{Title}}</text>
+  <image class="vote-item-picture" src="{{Picture}}" mode="widthFix"></image>
+</template>
+
+<view class="container">
+  <view class="page-body">
+    <!-- 背景图 -->
+    <image src="../../../images/vote-list-bg.png" class="vote-list-bg"></image>
+    <block wx:for="{{voteList}}" wx:for-item="item" wx:key="idx">
+      <view catchtap="onVoteItemTap" data-voteid="{{item.VoteID}}" data-voteflag="{{item.VoteFlag}}" data-articleid="{{item.ArticleID!=undefined && item.ArticleID!=0 ? item.ArticleID : ''}}" class="vote-item">
+        <template is="vote-item" data="{{...item}}" />
+      </view>
+    </block>
+  </view>
+</view>

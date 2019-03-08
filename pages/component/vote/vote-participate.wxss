@@ -1,0 +1,165 @@
+/* pages/component/vote/vote-participate.wxss */
+.container{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+}
+.bg{
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6; 
+  filter: blur(10px);
+}
+.page-body{
+  position: absolute;
+  top:0;
+  left:0;
+  background: transparent;
+  width: 100%;
+  /* padding: 0 15px; */
+  box-sizing: border-box;
+  overflow-y: scroll;
+  height:100%;
+  padding-bottom: 100rpx;
+}
+
+/*纯文本模板样式*/
+.article-content-text{
+  display: block;
+  /* font-size: 100%; */
+  margin: 0 15px 10px;
+  line-height: 1.7;
+  text-indent: 2em;
+  font-size:14px;
+  color:#fff;
+}
+
+/*图文模版，带角标图注 */
+.article-content-text-image{
+  margin:0 15px 20px;
+}
+.article-content-text-image-img{
+  display: block;
+  width: 100%;
+}
+.article-content-text-image-txt-box{
+  /* height: 64px; */
+}
+.article-content-text-image-icon{
+  position: relative;
+  left: 15px;
+  top: -15px;
+  width: 15px;
+  height: 15px;
+  z-index: 10;
+}
+.article-content-text-image-txt{
+  display: block;
+  font-size: 14px;
+  color: #1E1E1E;
+  padding: 0 10px 20px;
+  border-bottom: solid;
+  border-bottom-color: #d2d2d2;
+  border-bottom-width: 1px;
+  margin-bottom: 25px;
+  line-height: 1.5;
+  margin-top:-10px;
+}
+/*GIF图片模版*/
+.article-content-gif{
+  display: block;
+  /* margin:0 15px 20px; */
+   width: 100%; 
+}
+/*标题模板*/
+.article-content-title{
+  display: block;
+  text-align: left;
+  margin:0 15px 17px;
+}
+.article-content-title-txt{
+  font-size: 18px;
+  line-height: 1.2;
+  padding-bottom: 5px;
+  border-bottom:3px solid #1e1e1e;
+}
+/* 小标题模板样式 */
+.article-content-sub-title{
+  display: block;
+  /* width: 100%; */
+  padding: 0 0 5px;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 15px;
+  word-break: break-all;
+  white-space: normal;
+}
+/* 文章内容渲染样式 */
+.articleinfo-keytitle{
+  font-size: 14px;
+  margin: 10px 15px 15px;
+}
+.articleinfo-keytitle-title{
+  display: block;
+}
+.articleinfo-keytitle-word{
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  /* margin: 10px 0 0; */
+}
+/* 投票模板 */
+.article-content-vote{
+  display: block;
+  text-align: center;
+  width: 100%;
+  font-size: 14px;
+  margin: 20px 0;
+  color: #db3a45;
+}
+
+
+/* 海选结束页新增样式 */
+.voteinfo-title{
+  display: block;
+  margin: 40rpx auto 25rpx;
+  width: 665rpx;
+  font-size: 34rpx;
+  color:#fff;
+  line-height: 1.4;
+  text-align: left;
+}
+.voteinfo-votetime{
+  display: block;
+  text-align: center;
+  color:#fff;
+  font-size: 28rpx;
+  margin-bottom: 25rpx;
+}
+.vote-join-form{
+  position: fixed;
+  bottom:0;
+  left:0;
+  display: block;
+  width:100%;
+  height:100rpx;
+  background: #db3944;
+}
+.vote-join-form.iponex{
+  padding-bottom: 15px;
+}
+.vote-join-btn{
+  display: block;
+  width:100%;
+  height:100rpx;
+  line-height: 100rpx;
+  background: #db3944;
+  text-align: center;
+  font-size: 30rpx;
+  color:#fff;
+  margin: 0;
+  border-radius:0;
+}

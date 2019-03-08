@@ -1,0 +1,111 @@
+<!--pages/component/user/user-index.wxml-->
+
+<!--home.wxml-->
+<import src="../../common/head.wxml" />
+<import src="../../common/foot.wxml" />
+
+<!-- 投票进行中 -->
+<template name="user-vote-voting">
+  <view wx:if="{{PictureList && PictureList.length > 0}}" class="user-vote-voting">
+    <!-- 图片信息 -->
+    <view class="user-vote-info">
+      <!-- 投票进行中字样 -->
+      <text class="user-voting-info">【投票进行中】</text>
+      <!-- 活动标题 -->
+      <text class="user-voting-title" catchtap='onVoteTap' data-voteid="{{VoteID}}" data-voteflag="{{VoteFlag}}" data-articleid="{{VoteArticleID}}">{{Title}}</text>
+    </view>
+    <!-- 参赛图片 -->
+    <!-- 有图时 -->
+    <block wx:if="{{PictureList}}" wx:for="{{PictureList}}" wx:for-item="item" wx:key="idx" wx:for-index="childindex">
+      <view class="user-voting-img" catchtap='onVotePicture' data-itemobject="{{ItemObject}}" data-voteid="{{VoteID}}" data-index="{{childindex}}">
+        <!-- 参赛单图 -->
+        <image src="{{item.Picture}}" class="user-vote-img"></image>
+        <!-- 删除按钮 -->
+        <block wx:if="{{item.Flag != 0}}">
+          <image src="../../../images/u369.png" class="user-vote-cha" catchtap='onDeletePicture' data-index='{{childindex}}' data-voteid="{{VoteID}}" data-findex="{{index}}"></image>
+        </block>
+        <!-- 审核状态 -->
+        <text class="user-vote-examine {{item.Flag == 1?'wait':null}} {{item.Flag == 2?'error':null}}">{{item.FlagName}}</text>
+      </view>
+    </block>
+  </view>
+</template>
+
+<!-- 投票已结束 -->
+<template name="user-vote-voted">
+  <view class="user-vote-voted">
+    <!-- 图片信息 -->
+    <view class="user-vote-info">
+      <!-- 投票已结束字样 -->
+      <text class="user-voted-info">【投票已结束】</text>
+      <!-- 活动标题 -->
+      <text class="user-voting-title" catchtap='onVoteTap' data-voteid="{{VoteID}}" data-voteflag="{{VoteFlag}}">{{Title}}</text>
+    </view>
+    <!-- 参赛图片 -->
+    <!-- 有图时 -->
+    <block wx:if="{{PictureList}}" wx:for="{{PictureList}}" wx:for-item="item" wx:key="idx" wx:for-index="index">
+      <view class="user-voting-img" catchtap='onVotePicture' data-itemobject="{{ItemObject}}" data-voteid="{{VoteID}}" data-index="{{index}}">
+        <!-- 参赛单图 -->
+        <image src="{{item.Picture}}" class="user-vote-img"></image>
+        <!-- 排名信息 -->
+        <block wx:if="{{item.VoteRank == 1}}">
+          <image class="user-vote-ranking" src="../../../images/icon_medal_1.png">{{item.VoteRank}}</image>
+        </block>
+        <block wx:elif="{{item.VoteRank == 2}}">
+          <image class="user-vote-ranking" src="../../../images/icon_medal_2.png">{{item.VoteRank}}</image>
+        </block>
+        <block wx:elif="{{item.VoteRank == 3}}">
+          <image class="user-vote-ranking" src="../../../images/icon_medal_3.png">{{item.VoteRank}}</image>
+        </block>
+      </view>
+    </block>
+  </view>
+</template>
+
+
+<!-- 页面结构区域 -->
+<view class="container">
+  <view class="page-body">
+    <!-- 用户信息 -->
+    <view class="user-info">
+      <image src="{{userInfo.avatarUrl}}" class="user-info-bg" mode="aspectFill"></image>
+      <view class="user-info-inner">
+        <!-- 用户头像 -->
+        <image src="{{userInfo.avatarUrl}}" class="user-info-avatar"></image>
+        <!-- 用户昵称 -->
+        <text class="user-info-nickname">{{userInfo.nickName}}</text>
+      </view>
+    </view>
+
+    <block wx:if="{{voteList && voteList.length > 0}}">
+      <view class="user-participate-font">
+        <text style="width:30rpx;  vertical-align:middle; height:6rpx; display:inline-block; background:#000;"></text>
+        <text style="margin:0 16rpx;">参赛图片</text>
+        <text style="width:30rpx;  vertical-align:middle; height:6rpx; display:inline-block; background:#000;"></text>
+      </view>
+      <view class="user-vote-list">
+        <block wx:for="{{voteList}}" wx:for-item="item" wx:key="idx" wx:for-index="index">
+          <block wx:if="{{item.VoteFlag == 1}}">
+            <template is="user-vote-voting" data="{{...item,index}}"></template>
+          </block>
+          <block wx:elif="{{item.VoteFlag == 2}}">
+            <template is="user-vote-voting" data="{{...item}}"></template>
+          </block>
+          <block wx:elif="{{item.VoteFlag == 3}}">
+            <template is="user-vote-voting" data="{{...item,index}}"></template>
+          </block>
+          <block wx:elif="{{item.VoteFlag == 4}}">
+            <template is="user-vote-voted" data="{{...item}}"></template>
+          </block>
+        </block>
+      </view>
+    </block>
+    <block wx:else>
+      <image src="../../../images/icon_zhuyi.png" class="user-nolist-img"></image>
+      <view class="user-nolist-text">您还没有上传图片</view>
+      <view class="user-nolist-text">点击下方按钮来参赛吧！</view>
+      <view class="user-nolist-btn" catchtap='onVoteList'>当前活动</view>
+    </block>
+
+  </view>
+</view>

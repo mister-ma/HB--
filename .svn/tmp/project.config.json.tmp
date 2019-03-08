@@ -1,0 +1,59 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.6.6",
+	"appid": "wx1437b381f14b045f",
+	"projectname": "%E8%A1%97%E6%8B%8D",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "文章详情页",
+					"pathName": "pages/component/index/article-detail",
+					"query": "articleId=139356"
+				},
+				{
+					"id": -1,
+					"name": "demo",
+					"pathName": "pages/component/demo/demo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "投票列表页",
+					"pathName": "pages/component/vote/vote-list",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "我的",
+					"pathName": "pages/component/user/user-index",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "单图页",
+					"pathName": "pages/component/vote/vote-image",
+					"query": "voteid=21&index=2"
+				}
+			]
+		}
+	}
+}
