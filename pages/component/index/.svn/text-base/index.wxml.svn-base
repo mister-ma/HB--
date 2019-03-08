@@ -1,35 +1,79 @@
-<!--home.wxml-->
-<import src="../../common/head.wxml" />
-<import src="../../common/foot.wxml" />
+<!--pages/component/pages/index/index.wxml--> 
+<!-- 搜索 -->
+<!-- <input type="number" id="searchGoodsDetailId" placeholder="搜索喜欢的商品" bindfocus="orderIdInput" placeholder-style="color:#9b9b9b;" /> -->
+<view id="searchGoodsDetailId" bindtap="orderIdInput">
+  <image src="../../../images/LT-index-search.png" mode="widthFix" class="LT-index-search"></image>
+  <text class="index-search-text">搜索喜欢的商品</text>
+</view>
 
-<template name="article-item">
-  <view class="article-item">
-    <image class="article-item-picture" src="{{Picture}}" mode="widthFix"></image>
-    <text class="article-item-title">{{Title}}</text>
-    <view wx:if="{{Comments}}" class="article-item-comment">
-      <image src="../../../images/icon_comment.png" class="comment-icon"></image>
-      <block wx:for="{{Comments}}" wx:for-item="item" wx:key="idx">
-        <view class="article-comment-view">
-          <text class="comment-username">{{item.User.NickName}}</text>
-          <text class="comment-content">{{item.Content}}</text>
-        </view>
-      </block>
+<!--轮播图-->
+<swiper class="index-top-swiper" indicator-dots="true" autoplay="true" interval="3000" duration="600" circular="true" indicator-color="#e7d7bc" indicator-active-color="#c49a58">
+  <block wx:for="{{bannerPic}}" wx:for-item="item" wx:for-index="index" wx:key="idx">
+    <swiper-item class="index-top-swiper-item">
+      <image src="{{item.Picture}}" mode="widthFix" data-src="{{item.Picture}}"></image>
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class="index-line"></view>
+<!--商品分类列表-->
+<view class="index-product">
+  <view class="{{fixed?'fix':''}}" style="display:block; width:100%; overflow:hidden; background:#fff; z-index:100;">
+    <view class="index-product-nav ">
+      <text class="index-product-nav-text1 {{clicked1?'on':''}}" bindtap='onProductNavTap' data-index="1" data-goodstype="1">购物袋精选</text>
+      <text class="index-product-nav-text2 {{clicked2?'on':''}}" bindtap='onProductNavTap' data-index="2" data-goodstype="2">手工无痕包</text>
+      <text class="index-product-nav-text3 {{clicked3?'on':''}}" bindtap='onProductNavTap' data-index="3" data-goodstype="9">精彩视频</text>
+      <text class="index-product-nav-text4 {{clicked4?'on':''}}" bindtap='onProductNavTap' data-index="4" data-goodstype="2">皮具精选</text>
     </view>
+    <view class="index-list-swiper-line"></view>
   </view>
-</template>
-
-<view class="container">
-  <view class="page-body">
-    <block wx:if="{{loading}}">
-      <view style="width:100%; height:{{wHeight}}px; overflow:hidden; background:#222;">
-        <image src="../../../images/index_bg.jpg" class="index_bg" mode="aspectFill"></image>
+<!-- 商品列表 -->
+  <view style="display:block; width:100%; padding-top:{{fixed?130:30}}rpx;" class="index-product-box">
+    <!--商品分类列表 包-->
+    <block wx:if="{{goodsType != 9}}">
+      <block wx:for="{{goodsList}}" wx:for-item="item" wx:key="idx" wx:for-index="findex">
+      <view style="position:relative; width:100%;">
+        <swiper class="index-list-swiper" interval="3000" duration="600" current="{{swiperCur[findex].swiperCurIndex}}" bindchange='onProductSwiperChange' data-index="{{findex}}">
+          <!--属性商品-->
+          <block wx:for="{{item}}" wx:for-item="itemPic" wx:key="idx" wx:for-index="index">
+            <swiper-item class="index-list-swiper-item" catchtap="onGoodsItemTap" data-goodsDetailId="{{itemPic.GoodsDetailID}}" style="width:690rpx;" >
+              <view class="list-swiper-item-left">
+                <!--商品标题-->
+                <text class="goods-title">{{itemPic.RelatedTitle}}</text>
+                <!--商品价格-->
+                <text class="goods-price">￥{{itemPic.Price}}.00</text>
+              </view>
+              <image src="{{itemPic.Picture}}" data-src="{{itemPic.Picture}}" class="list-swiper-item-right"></image>
+            </swiper-item>
+          </block>
+        </swiper>
+        <image src="../../../images/index-left.png" class="list-swiper-left" catchtap='onSwiperLeftBtn' data-index="{{findex}}"></image>
+        <image src="../../../images/index-right.png" class="list-swiper-right" catchtap='onSwiperRightBtn' data-index="{{findex}}"></image>
       </view>
+      <view class="index-list-swiper-line"></view>
+      </block>
     </block>
-    <block wx:for="{{articleList}}" wx:for-item="item" wx:key="idx">
-      <view catchtap="onArticleItemTap" data-articleId="{{item.ArticleID}}">
-        <template is="article-item" data="{{...item}}" />
-        <view class="article-item-bar"></view>
+    <!-- 商品分类列表 视频-->
+    <block wx:elif="{{goodsType == 9}}">
+      <view wx:for="{{videoList}}" wx:for-item="item" wx:key="idx" class="index-video" wx:for-index="index">
+            <video wx:if="{{!item.poster}}" src="{{item.VideoUrl}}" data-src="{{item.VideoUrl}}" controls class="video-cover"  data-cur="{{index}}"  autoplay  bindended='onVideoEndTap'> 
+             <!-- <video wx:if="{{!item.poster}}" src="{{item.VideoUrl}}" data-src="{{item.VideoUrl}}" controls class="video-cover" bindplay="onVideoPlayerTap" bindended="onVideoPauseTap"  data-cur="{{index}}"  autoplay>  -->
+               <!-- <cover-view wx:if="{{item.poster}}" class="video-controls" >
+                <cover-image src="{{item.Picture}}"/>
+              </cover-view>  -->
+            </video>
+            <!-- <view wx:if="{{item.poster}}" class="video-title">{{item.VideoTitle}}</view> -->
+            <view wx:if="{{item.poster}}" class="video-top">
+              <image src="{{item.Picture}}" class="video-top-img"></image>
+              <text class="video-top-txt">{{item.VideoTitle}}</text>
+              <image src="../../../images/index-video-palyer.png" class="video-top-player" catchtap='onVideoPlayerTap' data-cur="{{index}}"></image>
+            </view>
       </view>
-    </block>
+    </block>  
   </view>
 </view>
+
+<!-- 回到顶部 -->
+<image wx:if="{{backtop}}" src="../../../images/user-coupon-backtop.png" class="backtop" catchtap='onBackToTop'></image>
+
+

@@ -1,0 +1,19 @@
+<!--infoType 1 购买渠道 2 品牌介绍 3 店铺图-->
+<view class="container">
+  <!--品牌介绍-->
+  <block wx:if="{{infoType == 2}}"> 
+    <view class="purchase-brand">
+      <image src="../../../images/LT-purchase-brand.jpg" mode="widthFix" class="purchase-brand-img1"></image>
+      <view class="purchase-brand-bottom">
+        <view class="purchase-brand-bottom-top">
+          <image src="../../../images/LT-purchase-brand2.jpg" mode="widthFix" class="purchase-brand-img2"></image>
+          <text class="purchase-brand-title">品牌介绍</text>
+          <text class="brand-name">法国皮具品牌Le tanneur诞生于1898年，以“美丽的皮革礼品”华丽绽放，曾作为LV皮具供应商，是以卓越的品质，优秀的设计理念延续至今已 有百年。人气颇旺的高性价比帆布包深受广大白领、学生的喜爱，经典系列产品“无痕”更是拥有技术专利，独具特色的纯手工制品。未来，Le tanneur还将为大家带来              更多优秀产品。
+          </text>
+        </view>
+        <image src="../../../images/LT-purchase-brand3.jpg" mode="widthFix" class="purchase-brand-img3" bindtap="onBrandPic" data-type="3"></image> 
+      </view>
+    </view>
+  </block>
+</view>
+

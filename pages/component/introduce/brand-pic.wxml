@@ -1,0 +1,29 @@
+<!--infoType 1 购买渠道 2 品牌介绍 3 店铺图-->
+<view class="container">
+  <!--店铺图-->
+   <block wx:if="{{infoType == 3}}">
+    <view wx:if="{{PictureList && PictureList.length>0}}" class="purchase-waterfall" > 
+      <view class="left-img">
+        <block wx:for="{{leftImg}}" wx:key="idx" wx:item="item">
+          <image src="{{item.Picture}}" mode="widthFix" catchtap="onPreviewPicture" data-index="{{item.cur}}"></image>
+        </block>
+        <!-- <image src="{{hostUrl}}/app/images/lt/2.jpg" mode="widthFix" data-index="2"></image>
+        <image src="{{hostUrl}}/app/images/lt/3.jpg" mode="widthFix" data-index="4"></image>
+        <image src="{{hostUrl}}/app/images/lt/4.jpg" mode="widthFix" data-index="6"></image>
+        <image src="{{hostUrl}}/app/images/lt/5.jpg" mode="widthFix" data-index="8"></image> -->
+      </view>
+      <view class="right-img">
+        <block wx:for="{{rightImg}}" wx:key="idx" wx:item="item">
+          <image src="{{item.Picture}}" mode="widthFix" catchtap="onPreviewPicture" data-index="{{item.cur}}"></image>
+        </block>
+        <!-- <image src="{{hostUrl}}/app/images/lt/6.jpg" mode="widthFix" data-index="1"></image>
+        <image src="{{hostUrl}}/app/images/lt/7.jpg" mode="widthFix" data-index="3"></image>
+        <image src="{{hostUrl}}/app/images/lt/8.jpg" mode="widthFix" data-index="5"></image>
+        <image src="{{hostUrl}}/app/images/lt/9.jpg" mode="widthFix" data-index="7"></image>
+        <image src="{{hostUrl}}/app/images/lt/10.jpg" mode="widthFix" data-index="9"></image> -->
+      </view>
+    </view>
+  </block> 
+
+</view>
+

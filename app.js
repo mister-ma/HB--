@@ -99,8 +99,7 @@ App({
               key: info.encryptedData,
               iv: info.iv
             }, 'POST', result => {
-              console.log(result);
-              setTimeout(function () {
+              setTimeout(function () {    
                 var title = (result.result && result.result.nickName != undefined) ? '欢迎你，' + result.result.nickName : '欢迎你';
                 wx.showToast({
                   title: title,
@@ -143,6 +142,7 @@ App({
   getUserInfo: function (callback) {
     var _this = this;
     wx.getUserInfo({
+      withCredentials: true,
       success: result => {
         typeof callback == 'function' && callback(result);
       },
@@ -158,27 +158,6 @@ App({
     })
   },
 
-  /**
-   * 获取用户Sid
-   */
-  getSid: function (userId, callback) {
-    var _this = this;
-    _this.loginLoad(() => {
-      var sid = _this.user.sid;
-      if (!sid) {
-        _this.util.request(_this.constant.API_GET_SID, {
-          UserID: userId
-        }, 'GET', result => {
-          if (result.errorCode == 10000) {
-            _this.user.sid = result.result.Sid;
-            typeof callback == 'function' && callback(result.result.Sid);
-          }
-        });
-      } else {
-        typeof callback == 'function' && callback(sid);
-      }
-    });
-  },
 
   /**
    * 收集用户formid
@@ -203,6 +182,8 @@ App({
     userIndexVotePictures: {},
     voteParticipateList: {},
     userIndexVoteFlag: {},
+    recommendListArr:[],
     isIponeX: false
-  }
+  },
+
 })

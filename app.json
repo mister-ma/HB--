@@ -1,57 +1,52 @@
 {
   "pages": [
     "pages/component/index/index",
-    "pages/component/index/article-detail",
-    "pages/component/error/error",
+    "pages/component/index/goods-detail",
+    "pages/component/search/search",
+    "pages/component/search/search-result",
+    "pages/component/introduce/purchase-channel",
+    "pages/component/introduce/buy-way",
+    "pages/component/introduce/brand-pic",
+    "pages/component/recommend/recommend-index",
     "pages/component/user/user-index",
-    "pages/component/user/user-index-vote-image",
-    "pages/component/vote/vote-list",
-    "pages/component/vote/vote-image",
-    "pages/component/vote/vote-progress",
-    "pages/component/vote/vote-participate",
-    "pages/component/vote/vote-end",
-    "pages/component/vote/vote-participate-list",
-    "pages/component/vote/vote-upload-image",
-    "pages/component/album/favorite",
-    "pages/component/album/picture-list",
-    "pages/component/demo/demo"
+    "pages/component/user/user-share"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "街拍",
-    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "Le Tanneur",
+    "navigationBarTextStyle": "white",
     "backgroundColor": "#fff",
     "enablePullDownRefresh": false
   },
   "tabBar": {
-    "color": "#fff",
-    "selectedColor": "#db3944",
+    "color": "#666",
+    "selectedColor": "#c49a58",
     "borderStyle": "black",
     "backgroundColor": "#000",
     "list": [
       {
         "pagePath": "pages/component/index/index",
-        "iconPath": "images/icon_component.png",
-        "selectedIconPath": "images/icon_component_HL.png",
-        "text": "街拍"
+        "iconPath": "images/LT-nav-index.png",
+        "selectedIconPath": "images/LT-nav-index_1.png",
+        "text": "首页"
       },
       {
-        "pagePath": "pages/component/album/favorite",
-        "iconPath": "images/icon_zuiai.png",
-        "selectedIconPath": "images/icon_zuiai_HL.png",
-        "text": "最爱"
+        "pagePath": "pages/component/introduce/purchase-channel",
+        "iconPath": "images/LT-nav-detail.png",
+        "selectedIconPath": "images/LT-nav-detail_1.png",
+        "text": "品牌介绍"
       },
       {
-        "pagePath": "pages/component/vote/vote-list",
-        "iconPath": "images/icon_API.png",
-        "selectedIconPath": "images/icon_API_HL.png",
-        "text": "投票"
+        "pagePath": "pages/component/recommend/recommend-index",
+        "iconPath": "images/LT-nav-tj.png",
+        "selectedIconPath": "images/LT-nav-tj_1.png",
+        "text": "为你推荐"
       },
       {
         "pagePath": "pages/component/user/user-index",
-        "iconPath": "images/icon_User.png",
-        "selectedIconPath": "images/icon_User_HL.png",
+        "iconPath": "images/LT-nav-user.png",
+        "selectedIconPath": "images/LT-nav-user_1.png",
         "text": "我的"
       }
     ]

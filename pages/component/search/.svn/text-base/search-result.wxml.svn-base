@@ -1,0 +1,38 @@
+
+<view class="container" style="background: {{(searchList && searchList.length > 0)?'#fff':'#f7f8ff'}};">
+  <!-- 搜索框 -->
+  <view class="search-box">
+    <form bindsubmit="onSearchGoodsDetail" report-submit='true' class="search-goods-detail">
+      <view class="search-left">
+        <input type="text" id="searchOrderId" placeholder="搜索喜欢的商品" bindinput="orderIdInput" bindfocus="orderIdFocus" bindblur="orderIdBlur" placeholder-style="color:#b3cad6;margin-left:50rpx;" value="{{searchKeyWord}}"/>
+        <image  wx:if="{{onInput}}" src="../../../images/LT-index-search.png" class="search-icon"></image>
+        <image wx:if="{{isSearch}}" src="../../../images/LT-search-cha.png" class="search-cha" catchtap='onSearchChaTap'></image>
+      </view>
+      <button  form-type="submit" class="search-orderId-btn on">搜索</button>
+    </form>
+  </view>
+  
+  <!--搜索结果-->
+   <block wx:if="{{searchList && searchList.length > 0}}">
+    <view class="search-line"></view>
+    <block wx:for="{{searchList}}" wx:for-item="item" wx:key="idx">
+      <view class="search-list-item" catchtap="onGoodsItemTap" data-goodsDetailId="{{item.GoodsDetailID}}">
+        <view class="search-list-item-left"> 
+          <!--商品标题-->
+           <text class="goods-title">{{item.RelatedTitle}}</text> 
+          <!--商品价格-->
+           <text class="goods-price">￥{{item.Price}}.00</text> 
+         </view>
+        <image src="{{item.Picture}}" data-src="{{item.Picture}}" class="search-list-item-right"></image>
+      </view>
+      <view class="search-result-line"></view>
+    </block>
+  </block>
+  <block wx:else> 
+    <view class="search-result-none">
+      <image src="../../../images/LT-search-redult-none.png" class="search-result-none-img"></image>
+      <text class="search-result-none-text">抱歉，暂无相关产品</text>
+    </view>
+  </block> 
+
+</view>

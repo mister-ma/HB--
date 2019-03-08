@@ -1,0 +1,152 @@
+<!--goods-detail.wxml-->
+<import src="../../common/head.wxml" />
+ <import src="../../common/foot.wxml" />  
+
+<!-- 1：标题模版 -->
+<!-- 示例文章：https://api.jiepaiapp.com/app/share.html?articleId=142453&id=1438675&s=9803cf2d8b84b38292b2cd4e5818a69b -->
+<template name="article-content-title">
+  <view class="article-content-title">
+    <text wx:if="{{Text}}" class="article-content-title-txt">{{Text}}</text>
+  </view>
+</template>
+
+<!-- 2：文本模版 -->
+<!-- 示例文章：https://api.jiepaiapp.com/app/share.html?articleId=142453&id=1438675&s=9803cf2d8b84b38292b2cd4e5818a69b -->
+<template name="article-content-text">
+  <text wx:if="{{Text}}" class="article-content-text">{{Text}}</text>
+</template>
+
+<!-- 4：图文模版，带角标图注 -->
+<!-- 示例文章：https://api.jiepaiapp.com/app/share.html?articleId=142453&id=1438675&s=9803cf2d8b84b38292b2cd4e5818a69b -->
+<template name="article-content-text-image">
+  <view wx:if="{{Picture}}" class="article-content-text-image">
+    <image wx:if="{{Picture}}" src="{{Picture}}" class="article-content-text-image-img" mode="widthFix" catchtap="onPreviewImg" data-src="{{Picture}}"></image>
+    <view wx:if="{{Text}}" class="article-content-text-image-txt-box">
+      <image src="../../../images/image_triangle_artical_detail_normal.png" class="article-content-text-image-icon"></image>
+      <text wx:if="{{Text}}" class="article-content-text-image-txt">{{Text}}</text>
+    </view>
+  </view>
+</template>
+
+<!-- 7：GIF图片模版 -->
+<template name="article-content-gif">
+  <view style="margin:0 15px 20px;">
+    <image wx:if="{{Picture}}" src="{{Picture}}" class="article-content-gif" mode="widthFix" catchtap="onPreviewImg" data-src="{{Picture}}"></image>
+  </view>
+</template>
+
+<!-- 8：引言模版 -->
+<template name="article-content-quote">
+  <view wx:if="{{Text}}" class="article-content-quote">
+    <image src="../../../images/image_quota01_normal@2x.png" class="article-content-quote-imgtop"></image>
+    <text wx:if="{{Text}}" class="article-content-quote-text">{{Text}}</text>
+    <image src="../../../images/image_quota02_normal@2x.png" class="article-content-quote-imgbottom"></image>
+  </view>
+</template>
+
+<!-- 9：文章模版 -->
+<template name="article-content-article">
+  <view class="article-content-article">
+    <image src="{{TitlePicture}}" class="article-content-article-pic"></image>
+    <text class="article-content-article-name">{{ColumnName}}</text>
+    <text class="article-content-article-title">{{Title}}</text>
+    <text class="article-content-article-txt">{{Text}}</text>
+  </view>
+</template>
+
+<!--商品详情图片轮播图-->
+<template name="goods-picture">
+  <view class="goods-picture">
+    <swiper class="goods-picture-swiper" current='{{picturesCur}}' bindchange='onGoodsSwiperChange'>
+       <block wx:for="{{pictures}}" wx:for-item="item" wx:key="idx"> 
+        <swiper-item class="goods-picture-swiper-item">
+          <image src="{{item.Picture}}" class="goods-picture-img"></image>
+         </swiper-item>
+         <!-- <swiper-item class="goods-picture-swiper-item">
+          <image src="{{pictures[0].Picture}}" class="goods-picture-img"></image>
+         </swiper-item>
+         <swiper-item class="goods-picture-swiper-item">
+          <image src="{{pictures[0].Picture}}" class="goods-picture-img"></image>
+         </swiper-item>   -->
+       </block> 
+    </swiper>
+    <view class="goods-picture-info">
+      <!-- 商品名 -->
+       <view wx:if="{{goodsName}}" class="goods-name">{{goodsName}}</view> 
+        <!-- <view wx:if="{{goodsName}}" class="goods-name">Fancy Queen！2017早春悉尼时装周已落幕，秀场外街拍中的闪亮瞬间仍然值得回味！个个都是</view> -->
+      <!-- 商品价格 -->
+      <view wx:if="{{goodsPrice}}" class="goods-price">￥{{goodsPrice}}.00</view>
+      <view class="goods-picture-swiper-count">{{picturesCur+1}} / {{picturesLength}}</view>
+    </view>
+  </view> 
+</template>
+
+<!-- 13：小标题模版 -->
+<!-- 示例文章：https://api.dev.jiepaiapp.com/app/share.html?articleId=139354&id=176&s=5e3bc5cb28024f1b2940463ef456de16 -->
+<template name="article-content-sub-title">
+  <text wx:if="{{Text}}" class="article-content-sub-title">{{Text}}</text>
+</template>
+
+<view class="container">
+  <view class="page-body {{isIponeX?'ipone':''}}">
+    <block wx:if="{{pictures}}">
+      <template is="goods-picture" data="{{pictures,goodsName,goodsPrice,picturesCur,picturesLength}}"/>
+    </block>
+    
+    <block wx:for="{{goodsContent}}" wx:for-item="item" wx:key="idx">
+      <!-- 标题 -->
+      <block wx:if="{{item.Type == 1}}">
+        <template is="article-content-title" data="{{...item}}" />
+      </block>
+      <!-- 文本 -->
+      <block wx:elif="{{item.Type == 2}}">
+        <template is="article-content-text" data="{{...item}}" />
+      </block>
+      <!-- 图片 -->
+      <block wx:elif="{{item.Type == 4}}">
+        <template is="article-content-text-image" data="{{...item}}" />
+      </block>
+      <!-- GIF图片 -->
+      <block wx:elif="{{item.Type == 7}}">
+        <template is="article-content-gif" data="{{...item}}" />
+      </block>
+      <!-- 引言 -->
+      <block wx:elif="{{item.Type == 8}}">
+        <template is="article-content-quote" data="{{...item}}" />
+      </block>
+      <!-- 文章 -->
+      <block wx:elif="{{item.Type == 9}}">
+        <template is="article-content-article" data="{{...item}}" />
+      </block>
+      <!-- 小标题 -->
+      <block wx:elif="{{item.Type == 13}}">
+        <template is="article-content-sub-title" data="{{...item}}" />
+      </block>
+      <block wx:else>
+      </block>
+    </block>
+
+    <!--购买方式-->
+    <view class="goods-buy-style {{isIphone?'iphone':''}}">
+      <view class="goods-buy-style-index">
+        <image src="../../../images/LT-goods-index.png" catchtap='onNavToIndexTap'></image>
+        <!-- <text>首页</text> -->
+      </view>
+      <view class="goods-buy-style-collection">
+        <block wx:if="{{goodsCollection}}">
+          <image src="../../../images/LT-goods-collection.png" catchtap='onCollectionTap' data-gid="{{goodsDetailId}}"></image>
+        </block>
+        <block wx:else>
+          <image src="../../../images/LT-goods-collectioned.png" catchtap='onCollectionTap' data-gid="{{goodsDetailId}}"></image>
+        </block>
+        
+      </view>
+      <view class="goods-buy-style-method">
+        <image src="../../../images/LT-goods-buy.png" catchtap="onGotoBuyWay" ></image>
+      </view>
+    </view>
+    
+  </view>
+</view>
+
+

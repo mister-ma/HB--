@@ -1,77 +1,306 @@
-image,view,text,block,button{
-  margin: 0;
-  padding: 0;
+/* pages/component/pages/index/index.wxss */
+
+.play,.pause,.time {
+  flex: 1;
+  height: 100%;
 }
-.container{
-    /* height: 100%;   */
+.time {
+  text-align: center;
+  background-color: rgba(0, 0, 0, .5);
+  color: white;
+  line-height: 50px;
 }
-.page-body{
-    /* height: 100%;  
-    overflow-y: scroll;  */
-}
-.article-item{
-  display: block;
-  width: 750rpx;
-  box-sizing: border-box;
-  padding: 30rpx 30rpx 2rpx;
-  background: #fff;
-}
-.article-item-picture{
-  display: block;
-  width:690rpx;
-  border-radius: 5px;
-}
-.article-item-title{
-  display: block;  
-  font-size: 16px;
-  font-weight: bold;
-  padding-top: 30rpx;
-}
-.article-item-comment{
-  position: relative;
-  display: block;
-  margin-top: 20rpx;
-  padding-left: 23px;
-}
-.comment-icon{
-  position: absolute;
-  top:2px;
-  left:0;
-  display: block;
-  width: 35rpx;
-  height: 30rpx;
-}
-.article-comment-view{
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 12px;
-}
-.comment-username{
-  color:#888;
-  margin-right: 8px;
+.img {
+  width: 40px;
+  height: 40px;
+  margin: 5px auto;
 }
 
-.article-item-bar{
-  width: 100%;
-  height: 10px;
-  background: #f0f0f0;
-  margin: 15px 0 0;
-}
-/* loading背景图 */
-.index_bg{
+/* 顶部搜索 */
+#searchGoodsDetailId{
   display: block;
-  width: 100%; 
-  height: 100%;
-  opacity: 0.6;
-  /* height: 95%; */
-  /* max-height: 100%; */
+  width: 690rpx;
+  height: 88rpx;
+   line-height: 88rpx;
+  background: #eff9fe;
+  border-radius: 10rpx;
+  margin: 20rpx auto 20rpx;
 }
-.index_bg_line{
+.LT-index-search{
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-left: 32rpx;
+  margin-right: 20rpx;
+}
+.index-search-text{
+  color:#b3cad6;
+  font-size: 30rpx;
+}
+
+/* 顶部轮播图 */
+.index-top-swiper{
+  display: block;
+  width: 690rpx;
+  margin: 0 auto;
+  height: 500rpx;
+}
+.index-top-swiper-item{
+  display: block;
+  width: 100%;
+  height: 460rpx;
+  border-radius: 10rpx;
+}
+.index-top-swiper-item image{
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+  overflow: hidden;
+  background: #eff9fe;
+}
+
+.index-line{
+  width: 100%;
+  height: 12rpx;
+  background: #f7f8ff;
+}
+
+/* 商品分类 */
+.index-product{
+  display: block;
+  width: 100%;
+}
+.index-product-nav{
+  display: block;
+  width: 690rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 0 auto;
+}
+.fix{
   position: fixed;
+  top:0;
+  z-index: 5;
+}
+.index-product-nav-text1,.index-product-nav-text2,.index-product-nav-text3,.index-product-nav-text4{
+  display: inline-block;
+  width: 168rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  text-align: center;
+  height: 100rpx;
+  /* border-bottom:1px solid #ccc;  */
+  position: relative;
+}
+.index-product-nav-text4{
+  width: 155rpx;
+}
+.index-product-nav-text1{
+  width: 190rpx;
+}
+.index-product-nav-text2{
+  width:177rpx;
+}
+.index-product-nav-text1.on:after{
+  content:'';
+  display: block;
+  position: absolute;
   bottom:0;
+  left:22%;
+  width: 56%;
+  height: 3px;
+  background: #c49a58;
+}
+.index-product-nav-text2.on:after{
+  content:'';
+  display: block;
+  position: absolute;
+  bottom:0;
+  left:16%;
+  width: 70%;
+  height: 3px;
+  background: #c49a58;
+}
+.index-product-nav-text3.on:after,.index-product-nav-text4.on:after{
+  content:'';
+  display: block;
+  position: absolute;
+  bottom:0;
+  left:26%;
+  width: 48%;
+  height: 3px;
+  background: #c49a58;
+}
+
+/* 商品分类swiper */
+.index-list-swiper{
+  display: block;
+  width: 690rpx;
+  height: 200rpx;
+  padding: 30rpx 0;
+  margin: 0 auto;
+}
+.index-list-swiper-item{
+  display: block;
+  width: 690rpx;
+  height: 100%;
+  overflow: hidden;
+}
+.list-swiper-item-left{
+  display: block;
+  float: left;
+  width: 460rpx;
+}
+.goods-title{
+  display: block;
+  width: 390rpx;
+  overflow: hidden;
+  max-height: 80rpx;
+  padding: 20rpx 0; 
+  line-height: 40rpx;
+  font-size: 25rpx;
+  margin-left: 30rpx;
+}
+.goods-price{
+  display: block;
+  width: 390rpx;
+  overflow: hidden;
+  height: 80rpx;
+  font-size: 32rpx;
+  font-weight: bolder;
+  line-height: 80rpx;
+  margin-left: 30rpx;
+}
+.list-swiper-item-right{
+  display: block;
+  float: left;
+  width: 196rpx;
+  height: 196rpx;
+  border: 2rpx solid #f4f4f4;
+  background:#f4f4f4; 
+}
+.index-list-swiper-line{
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #f4f4f4;
+}
+.list-swiper-left,.list-swiper-right{
+  position: absolute;
+  top:50%;
+  width: 10px;
+  height: 17.15px;
+  margin-top: -8px;
+}
+.list-swiper-left{
+  left:20rpx;
+}
+.list-swiper-right{
+  right:20rpx;
+}
+.index-product-box{
+  display: block;
+  width: 100%;
+  /* position: relative; */
+  padding-bottom: 30rpx;
+}
+/* 视频  */
+.index-video{
+  width: 690rpx;
+  height: 388rpx;
+  margin: 30rpx auto 0; 
+  position: relative;
+}
+.video-cover{
+  width: 690rpx;
+  height: 388rpx;
+  position: relative;
+  border-radius: 10rpx;
+  background: #000;
+}
+.video-item{
+  display: none;
+  position: absolute;
+  top:0;
   left:0;
   width: 100%;
-  height: 100rpx;
+  height: 100%;
+  border-radius: 10rpx;
 }
+.video-controls {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+  opacity: 1;
+}
+/* .video-palyer{
+  display: block;
+  width:90rpx;
+  height: 60rpx;
+  position: absolute;
+  top:50%;
+  left:50%;
+  margin-top: -30rpx;
+  margin-left: -45rpx;
+} */
+.video-title{
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 32rpx;
+  color:#fff;
+  font-weight: bold;
+  z-index: 10;
+}
+.video-top{
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  background: #000;
+  border-radius: 10rpx;
+}
+.video-top-img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  border-radius: 10rpx;
+}
+.video-top-txt{
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 32rpx;
+  color:#fff;
+  font-weight: bold;
+  z-index: 10;
+}
+.video-top-player{
+  position: absolute;
+  top:50%;
+  left:50%;
+  width: 90rpx;
+  height: 60rpx;
+  margin-left: -45rpx;
+  margin-top: -30rpx;
+}
+/* 回到顶部 */
+.backtop{
+  display: block;
+  width: 60rpx;
+  height: 60rpx;
+  position: fixed;
+  bottom:12rpx;
+  right:12rpx;
+}
+

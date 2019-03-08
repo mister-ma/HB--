@@ -1,0 +1,55 @@
+ 
+<view class="container">
+  <!--头部问题-->
+  <view class="index-question">
+    <block wx:if="{{lastShow}}">
+      <image src="../../../images/LT-recommend-question.png" mode="widthFix" class="index-question-font"></image>
+      <text class="index-question-content">{{content.Title}}</text>
+      <view class="index-question-answer" catchtap='onAnswerListTap' data-sid="{{curQuestion}}">
+        <block wx:for="{{content.Options}}" wx:for-item="item" wx:for-index="index" wx:key="idx">
+          <view wx:if="{{item}}" class="index-question-answer-list" data-cur="{{index}}">{{options[index]}} <text data-cur="{{index}}">{{item}}</text></view>
+        </block>
+      </view>
+      <!-- 问题页码 -->
+      <view class="index-question-count">
+        <text style="color:#c49a58; margin-right:1px;">{{curQuestion}}</text>/<text style="color:#fff; margin-left:1px;">{{questionLength}}</text>
+      </view>
+
+      <!-- 返回上一题 -->
+      <image wx:if="{{backShow}}" src="../../../images/recommend-back-prev.png" class="recommend-back-prev" catchtap='onBackPrev' data-sid="{{curQuestion}}" data-cur="{{currentOption}}"></image>
+    </block>
+    <block wx:else>
+      <text class="test-over">测试完毕。</text>
+      <image class="test-reload-btn" src="../../../images/test-over.png"  catchtap='onTestReloadTap' ></image>
+    </block>
+  </view>
+
+  <block wx:if="{{recommendList && recommendList.length>0}}">
+    <image src="../../../images/LT-recommend-tj.png" mode="widthFix" class="recommend-tj"></image>
+    <view class="index-list-swiper-line"></view>
+     <!-- 商品列表 -->
+    <block wx:for="{{recommendList}}" wx:for-item="item" wx:for-index="index" wx:key="idx">
+      <!--属性商品-->
+      <view class="index-list-swiper-item" catchtap='onGoodsItemTap' data-goodsDetailId="{{item.DID}}" style="width:690rpx;">
+        <view class="list-swiper-item-left">
+          <!--商品标题-->
+          <text class="goods-title">{{item.GoodsName}}</text>
+          <!--商品价格-->
+        <text class="goods-price">￥{{item.Price}}.00</text>
+        </view>
+        <image src="{{item.Picture}}"  class="list-swiper-item-right"></image>
+      </view>
+
+      <view class="index-list-swiper-line"></view>
+    </block>
+  </block>
+  <block wx:else>
+      <view class="recommend-list-none" style="height:{{listNoneH}}px">
+        <image src="../../../images/recommend-list-none.png"></image>
+        <text>暂无内容</text>
+      </view>
+  </block>
+  
+  <!-- 回到顶部 -->
+  <image wx:if="{{backtop}}" src="../../../images/user-coupon-backtop.png" class="backtop" catchtap='onBackToTop'></image>
+</view>

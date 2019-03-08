@@ -8,9 +8,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.6.6",
-	"appid": "wx1437b381f14b045f",
-	"projectname": "%E8%A1%97%E6%8B%8D",
+	"libVersion": "1.9.1",
+	"appid": "wxf1d6c997045c4418",
+	"projectname": "lt",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"game": {
-			"current": -1,
+			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
@@ -29,33 +29,45 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "文章详情页",
-					"pathName": "pages/component/index/article-detail",
-					"query": "articleId=139356"
-				},
-				{
-					"id": -1,
-					"name": "demo",
-					"pathName": "pages/component/demo/demo",
+					"name": "首页",
+					"pathName": "pages/component/index/index",
 					"query": ""
 				},
 				{
+					"id": 1,
+					"name": "详情",
+					"pathName": "pages/component/index/goods-detail",
+					"query": "goodsDetailId=22"
+				},
+				{
 					"id": -1,
-					"name": "投票列表页",
-					"pathName": "pages/component/vote/vote-list",
+					"name": "搜索页",
+					"pathName": "pages/component/search/search",
 					"query": ""
 				},
 				{
 					"id": 3,
-					"name": "我的",
-					"pathName": "pages/component/user/user-index",
-					"query": ""
+					"name": "购买渠道",
+					"pathName": "pages/component/introduce/purchase-channel",
+					"query": "Type=2"
 				},
 				{
 					"id": 4,
-					"name": "单图页",
-					"pathName": "pages/component/vote/vote-image",
-					"query": "voteid=11&fileid=14681322"
+					"name": "我的",
+					"pathName": "pages/component/user/user-index",
+					"query": "Type=1&originalUserId=3"
+				},
+				{
+					"id": -1,
+					"name": "为你推荐",
+					"pathName": "pages/component/recommend/recommend-index",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "我的",
+					"pathName": "pages/component/user/user-index",
+					"query": "Type=1"
 				}
 			]
 		}

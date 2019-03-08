@@ -1,0 +1,90 @@
+ <view class="container"> 
+    <view class="share-body">
+      <!-- 用户信息 -->
+      <view class="user-info ">
+        <image src="../../../images/user-author-bg.jpg" class="user-author-bg" ></image>
+        <view class="user-info-inner">
+          <!-- 用户头像 -->
+          <image src="{{originalUserInfo.Avatar}}" class="user-info-avatar"></image>
+          <!-- 用户昵称 -->
+          <text class="user-info-nickname">{{originalUserInfo.NickName}}</text>
+        </view>
+      </view>
+
+      <view wx:if="{{originalUserInfo}}" class="forword ">
+        <view class="forword-inner">
+          <!--XX人喜欢-->
+          <view class="forword-like"><text style="color:#c49a58;">{{allPraiseCount}}</text>人喜欢 LE TANNEUR</view>
+          <image src="../../../images/user-activity-description.png" class="activity-description" catchtap='onaActivityShow'></image>
+          <view wx:if="{{activityShow}}" class="activity-descriptioned">
+            <image src="../../../images/user-activity-descriptioned.png" ></image>
+            <text>转发小程序，获得10位好友的支持，即可领取福利</text>
+          </view>
+          <view style="width:100%; height:0; clear:both;"></view>
+          <!--轮播图-->
+          <swiper autoplay interval="3000" duration="600" circular class="forword-swiper">
+            <block wx:for="{{shareBannerPic}}" wx:for-item="item" wx:for-index="index" wx:key="idx">
+              <swiper-item class="forword-swiper-item">
+                <image src="{{item.Picture}}"></image>
+              </swiper-item>
+            </block>
+          </swiper>
+          
+          <!--支持者 支持数-->
+          <view class="forword-support">
+              <block wx:for="{{praiseOriginalInfo}}" wx:for-item="item" wx:for-index="index" wx:key="idx">
+                <block wx:if="{{index == 0}}">
+                  <image src="{{item.Avatar}}" class="forword-avatar" style="margin-left:0;"></image>
+                </block>
+                <block wx:else>
+                  <image src="{{item.Avatar}}" class="forword-avatar"></image>
+                </block>
+              </block>
+              <!--已有支持数-->
+              <view class="forword-support-num">
+                <text>支持数</text>
+                <text style="color:#c49a58;">{{praiseOriginalCount}}/10</text>
+              </view>
+          </view>
+          
+          <!--点赞按钮-->
+          <!-- <button size="mini" bindtap="onPraiseTap">点赞</button> -->
+          <view  class="share-praise"> 
+            <block wx:if="{{isFullParise}}">
+              <text>已满10人，谢谢你的支持!</text>
+            </block>
+            <block wx:elif="{{isParised}}"> 
+              <text>已点赞</text>
+            </block> 
+            <block wx:else>
+              <button  bindtap="onPraiseTap" data-userid="{{originalUserId}}">为TA点赞</button> 
+            </block>
+          </view> 
+
+         
+
+        </view>
+         <!-- 底部导航 -->
+          <view class="nav-bottom {{isIphone?'iphone':''}}">
+              <view class="nav-bottom-list" bindtap="onGoToHome">
+                <image src="../../../images/LT-nav-index.png"  style="width:60rpx; height:60rpx;"></image>
+                 <text>首页</text> 
+              </view>
+              <view class="nav-bottom-list" bindtap="onGoToBrand">
+                <image src="../../../images/LT-nav-detail.png"  style="width:60rpx; height:60rpx;"></image>
+                 <text>品牌介绍</text> 
+              </view>
+              <view class="nav-bottom-list" bindtap="onGoToRecommend">
+                <image src="../../../images/LT-nav-tj.png" style="width:60rpx; height:60rpx;"></image>
+                 <text>为你推荐</text> 
+              </view>
+              <view class="nav-bottom-list">
+                <image src="../../../images/LT-nav-user_1.png" style="width:60rpx; height:60rpx; color:#c49a58;"></image>
+                 <text>我的</text> 
+              </view>
+          </view>
+      </view>
+
+      
+    </view>
+   </view> 

@@ -1,74 +1,11 @@
-<!--pages/component/user/user-index.wxml-->
-
-<!--home.wxml-->
-<import src="../../common/head.wxml" />
-<import src="../../common/foot.wxml" />
-
-<!-- 投票进行中 -->
-<template name="user-vote-voting">
-  <view wx:if="{{PictureList && PictureList.length > 0}}" class="user-vote-voting">
-    <!-- 图片信息 -->
-    <view class="user-vote-info">
-      <!-- 投票进行中字样 -->
-      <text class="user-voting-info">【投票进行中】</text>
-      <!-- 活动标题 -->
-      <text class="user-voting-title" catchtap='onVoteTap' data-voteid="{{VoteID}}" data-voteflag="{{VoteFlag}}" data-articleid="{{VoteArticleID}}">{{Title}}</text>
-    </view>
-    <!-- 参赛图片 -->
-    <!-- 有图时 -->
-    <block wx:if="{{PictureList}}" wx:for="{{PictureList}}" wx:for-item="item" wx:key="idx" wx:for-index="childindex">
-      <view class="user-voting-img" catchtap='onVotePicture' data-itemobject="{{ItemObject}}" data-voteid="{{VoteID}}" data-index="{{childindex}}">
-        <!-- 参赛单图 -->
-        <image src="{{item.Picture}}" class="user-vote-img"></image>
-        <!-- 删除按钮 -->
-        <block wx:if="{{item.Flag != 0}}">
-          <image src="../../../images/u369.png" class="user-vote-cha" catchtap='onDeletePicture' data-index='{{childindex}}' data-voteid="{{VoteID}}" data-findex="{{index}}"></image>
-        </block>
-        <!-- 审核状态 -->
-        <text class="user-vote-examine {{item.Flag == 1?'wait':null}} {{item.Flag == 2?'error':null}}">{{item.FlagName}}</text>
-      </view>
-    </block>
-  </view>
-</template>
-
-<!-- 投票已结束 -->
-<template name="user-vote-voted">
-  <view class="user-vote-voted">
-    <!-- 图片信息 -->
-    <view class="user-vote-info">
-      <!-- 投票已结束字样 -->
-      <text class="user-voted-info">【投票已结束】</text>
-      <!-- 活动标题 -->
-      <text class="user-voting-title" catchtap='onVoteTap' data-voteid="{{VoteID}}" data-voteflag="{{VoteFlag}}">{{Title}}</text>
-    </view>
-    <!-- 参赛图片 -->
-    <!-- 有图时 -->
-    <block wx:if="{{PictureList}}" wx:for="{{PictureList}}" wx:for-item="item" wx:key="idx" wx:for-index="index">
-      <view class="user-voting-img" catchtap='onVotePicture' data-itemobject="{{ItemObject}}" data-voteid="{{VoteID}}" data-index="{{index}}">
-        <!-- 参赛单图 -->
-        <image src="{{item.Picture}}" class="user-vote-img"></image>
-        <!-- 排名信息 -->
-        <block wx:if="{{item.VoteRank == 1}}">
-          <image class="user-vote-ranking" src="../../../images/icon_medal_1.png">{{item.VoteRank}}</image>
-        </block>
-        <block wx:elif="{{item.VoteRank == 2}}">
-          <image class="user-vote-ranking" src="../../../images/icon_medal_2.png">{{item.VoteRank}}</image>
-        </block>
-        <block wx:elif="{{item.VoteRank == 3}}">
-          <image class="user-vote-ranking" src="../../../images/icon_medal_3.png">{{item.VoteRank}}</image>
-        </block>
-      </view>
-    </block>
-  </view>
-</template>
-
-
 <!-- 页面结构区域 -->
 <view class="container">
-  <view class="page-body">
+  <!-- 我的页 -->
+  <!-- <block wx:if="{{!originalUserId}}"> -->
+  <view class="page-body" style="display:block;">
     <!-- 用户信息 -->
-    <view class="user-info">
-      <image src="{{userInfo.avatarUrl}}" class="user-info-bg" mode="aspectFill"></image>
+    <view class="user-info {{isIphone?'iphone':''}}">
+      <image src="../../../images/user-author-bg.jpg" class="user-author-bg" ></image>
       <view class="user-info-inner">
         <!-- 用户头像 -->
         <image src="{{userInfo.avatarUrl}}" class="user-info-avatar"></image>
@@ -76,36 +13,143 @@
         <text class="user-info-nickname">{{userInfo.nickName}}</text>
       </view>
     </view>
-
-    <block wx:if="{{voteList && voteList.length > 0}}">
-      <view class="user-participate-font">
-        <text style="width:30rpx;  vertical-align:middle; height:6rpx; display:inline-block; background:#000;"></text>
-        <text style="margin:0 16rpx;">参赛图片</text>
-        <text style="width:30rpx;  vertical-align:middle; height:6rpx; display:inline-block; background:#000;"></text>
-      </view>
-      <view class="user-vote-list">
-        <block wx:for="{{voteList}}" wx:for-item="item" wx:key="idx" wx:for-index="index">
-          <block wx:if="{{item.VoteFlag == 1}}">
-            <template is="user-vote-voting" data="{{...item,index}}"></template>
+      
+    <view class="index-product-nav {{isIphone?'iphone':''}}">
+      <text class="index-product-nav-text1 {{clicked1?'on':''}}" bindtap='onProductNavTap' data-index="1">转发得优惠</text>
+      <text class="index-product-nav-text2 {{clicked2?'on':''}}" bindtap='onProductNavTap' data-index="2">优惠券</text>
+      <text class="index-product-nav-text3 {{clicked3?'on':''}}" bindtap='onProductNavTap' data-index="3">收藏</text>
+    </view>
+    
+    <!-- 转发得优惠 -->
+    <block wx:if="{{typeId == 1}}">
+      <view class="forword {{isIphone?'iphone':''}}" style="">
+          <view class="forword-inner">
+            <!--XX人喜欢-->
+            <view class="forword-like"><text style="color:#c49a58;">{{allPraiseCount}}</text>人喜欢 LE TANNEUR</view>
+            <image src="../../../images/user-activity-description.png" class="activity-description" catchtap='onaActivityShow'></image>
+            <view wx:if="{{activityShow}}" class="activity-descriptioned">
+              <image src="../../../images/user-activity-descriptioned.png" ></image>
+              <text>转发小程序，获得10位好友的支持，即可领取福利</text>
+            </view>
+            <view style="width:100%; height:0; clear:both;"></view>
+            <!--轮播图-->
+            <swiper autoplay interval="3000" duration="600" circular class="forword-swiper">
+              <block wx:for="{{shareBannerPic}}" wx:for-item="item" wx:for-index="index" wx:key="idx">
+                <swiper-item class="forword-swiper-item">
+                  <image src="{{item.Picture}}"></image>
+                </swiper-item>
+              </block>
+            </swiper>
+            
+            <!--支持者 支持数-->
+            <view class="forword-support">
+              <block wx:for="{{praiseInfo}}" wx:for-item="item" wx:for-index="index" wx:key="idx">
+                  <block wx:if="{{index == 0}}">
+                    <image src="{{item.Avatar}}" class="forword-avatar" style="margin-left:0;"></image>
+                  </block>
+                  <block wx:else>
+                    <image src="{{item.Avatar}}" class="forword-avatar"></image>
+                  </block>
+              </block>
+              <!--已有支持数-->
+              <view class="forword-support-num">
+                  <text>支持数</text>
+                  <text style="color:#c49a58;">{{praiseCount}}/10</text>
+              </view>
+            </view>
+            <view class="forword-share">
+              <!-- 小程序转发 -->
+              <form  class="forword-form">
+                <button  open-type="share"><image src="../../../images/user-forword-program.png" class="user-forword-program" style="margin-right:25rpx;"></image>小程序转发</button>
+              </form>
+              <!--朋友圈分享-->
+              <form bindsubmit="onShareToTimeline" report-submit='true' class="forword-form">
+                <button form-type="submit">朋友圈分享<image src="../../../images/user-forword-timeline.png" class="user-forword-timeline" style="margin-left:25rpx;"></image></button>
+                
+              </form>
+              <view class="forword-share-line"></view>
+            </view>
+          </view>
+        </view> 
+                
+    </block>
+    <!-- 优惠券 -->
+    <block wx:elif="{{typeId == 2}}">
+      <view class="user-coupon {{isIphone?'iphone':''}}" style="">
+        <block wx:if="{{myCode && myCode.length}}">
+          <image src="../../../images/user-coupon-top.png" class="user-coupon-top"></image>
+          <block wx:for="{{myCode}}" wx:for-item="item" wx:key="idx" class="coupon">
+            <view class="coupon-list">
+              <text class="coupon-list-redeem">- 兑换码 -</text>
+              <text class="coupon-list-code" selectable='true'>{{item}}</text>
+              <text class="coupon-list-font">请前往微店与客服兑换</text>
+            </view>
           </block>
-          <block wx:elif="{{item.VoteFlag == 2}}">
-            <template is="user-vote-voting" data="{{...item}}"></template>
-          </block>
-          <block wx:elif="{{item.VoteFlag == 3}}">
-            <template is="user-vote-voting" data="{{...item,index}}"></template>
-          </block>
-          <block wx:elif="{{item.VoteFlag == 4}}">
-            <template is="user-vote-voted" data="{{...item}}"></template>
-          </block>
+          <image wx:if="{{scrollTop}}" src="../../../images/user-coupon-backtop.png" class="user-coupon-backtop"  catchtap='onBackToTop'></image>
         </block>
-      </view>
+        <block wx:else>
+          <view style="display:block; width:100%; height:100%; padding-top:1px; box-sizing:border-box;" >
+            <image src="../../../images/user-coupon-none.png" class="user-coupon-none"></image>
+            <text class="user-coupon-tip">暂无优惠券</text>
+            <text class="user-coupon-tip">点击参与活动</text>
+          </view>
+        </block>
+      </view>      
+      
     </block>
+
+    <!-- 收藏 -->
     <block wx:else>
-      <image src="../../../images/icon_zhuyi.png" class="user-nolist-img"></image>
-      <view class="user-nolist-text">您还没有上传图片</view>
-      <view class="user-nolist-text">点击下方按钮来参赛吧！</view>
-      <view class="user-nolist-btn" catchtap='onVoteList'>当前活动</view>
+         <view wx:if="{{goodsDetailList && goodsDetailList.length > 0}}" class="search-result-line"></view> 
+        <block wx:if="{{goodsDetailList && goodsDetailList.length > 0}}" wx:for="{{goodsDetailList}}" wx:for-item="item" wx:key="idx" wx:for-index="index">
+          <view class="user-collection-out" bindtouchstart='leftHandleStart' bindtouchmove='leftHandleMove'  data-index="{{index}}">
+            <view class="search-list-item" style="padding-left:{{padL}}px; margin-left:{{item.left}}rpx;">
+              <view  catchtap="onGoodsItemTap" data-goodsDetailId="{{item.GoodsDetailID}}">
+                <view class="search-list-item-left"> 
+                  <!--商品标题-->
+                  <text class="goods-title">{{item.RelatedTitle}}</text> 
+                  <!--商品价格-->
+                  <text class="goods-price">￥{{item.Price}}.00</text> 
+                </view>
+                <image src="{{item.Picture}}" data-src="{{item.Picture}}" class="search-list-item-right"></image>
+              </view>
+              <view  class="collection-io-btn" style="width:{{padL*2+1}}px;"   data-index="{{index}}">
+                <!-- <image src="../../../images/user-collection.png" ></image> -->
+              </view>
+              <!-- <view wx:if="{{!item.isShow}}" class="collection-io-btn" style="width:{{padL*2+1}}px;"  catchtap='onCollectionIoBtnTap' data-index="{{index}}">
+                
+              </view> -->
+              <view class="collection-io-box">
+                <button bindtap="onShareAppMessage" data-goods="{{item.GoodsDetailID}}" class="collection-io-share" open-type="share" data-index="{{index}}">分享</button>
+                <button bindtap="onDelGoods" data-goods="{{item.GoodsDetailID}}" class="collection-io-delete">删除</button>
+              </view>
+            </view>
+          </view> 
+          <view class="search-result-line"></view>
+        </block>
+        <block wx:if="{{!goodsDetailList || goodsDetailList.length <= 0}}">
+          <view class="user-collection-none">
+            <image src="../../../images/user-colletion-none.png" class="user-collection-none-img"></image>
+            <text>暂无收藏</text>
+          </view>
+        </block>
     </block>
+
+
+    <!-- 转发到朋友圈的图片   -->
+    <view wx:if="{{showShareDialog}}" class="user-show-share"> 
+      <!-- <view class="user-show-share-innner"> -->
+        <image wx:if="{{shareLtPicture}}" src="{{shareLtPicture}}" class="user-show-share-img"></image>
+        <text  wx:if="{{saveImageToAlbumFinish}}" class="share-vote-text">图片已保存到相册，可分享朋友圈</text> 
+        <image class="share-vote-cha" src="../../../images/user-share-cha.png"  catchtap='onShareCha'></image> 
+      <!-- </view> -->
+    </view> 
 
   </view>
+
+  <!-- </block> -->
+
+  <!-- 分享进入我的页 -->
+  
+
 </view>

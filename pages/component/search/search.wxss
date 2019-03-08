@@ -1,0 +1,141 @@
+.container{
+  display: block;
+  width: 100%;
+}
+
+/* 搜索框 */
+.search-goods-detail{
+  display: block;
+  width: 690rpx;
+  margin: 0 auto;
+  height: 88rpx;
+  padding: 20rpx 0;
+}
+.search-left{
+  display: block;
+  float: left;
+  width: 590rpx;
+  height: 88rpx;
+  position: relative;
+  border-radius: 15rpx;
+}
+#searchOrderId{
+  display: block;
+  width: 590rpx;
+  height: 88rpx;
+  background: #eff9fe;
+  border-radius: 15rpx;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+}
+.search-icon{
+  position: absolute;
+  top:50%;
+  left:20rpx;
+  margin-top: -20rpx;
+  width: 40rpx;
+  height: 40rpx;
+  z-index: 2;
+}
+.search-cha{
+  position: absolute;
+  top:50%;
+  right:20rpx;
+  margin-top: -20rpx;
+  width: 40rpx;
+  height: 40rpx;
+  z-index: 2;
+}
+.search-orderId-btn{
+  display: block;
+  float: right;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  line-height: 88rpx;
+  color:#000;
+  font-size: 30rpx;
+  padding-left: 0;
+  padding-right: 0;
+  background: #fff;
+  border: 0;
+  font-weight: bold;
+}
+.search-orderId-btn::after{
+  border:0;
+}
+.search-orderId-btn.on{
+ background: #c49a58;
+ color:#fff;
+}
+
+/* 历史搜索/热门搜索 */
+.search-line{
+  display: block;
+  width: 100%;
+  height: 12rpx;
+  background: #f7f8ff;
+}
+.recommend-search{
+  display: block;
+  width: 690rpx;
+  margin: 0 auto;
+  /* border-top:12rpx solid #f7f8ff; */
+  padding: 35rpx 0 28rpx 0; 
+}
+.recommend-search-title{
+  display: block;
+  float: left;
+  width: 605rpx;
+  font-size: 28rpx;
+  font-weight: bolder;
+}
+.recommend-search-title.hot,.hot-words.hot{
+  color:#c49a58;
+}
+.search-clear{
+  display: block;
+  float: right;
+  width: 74rpx;
+  height: 22rpx;
+  padding-top: 8rpx;
+}
+.recommend-search-list{
+  display: block;
+  width: 690rpx;
+  margin-top: 22rpx;
+}
+.hot-words{
+  display: inline-block;
+  padding: 0 28rpx;
+  font-size: 25rpx;
+  height: 56rpx;
+  line-height: 55rpx;
+  border:2rpx solid #000;
+  border-radius: 30rpx;
+  margin: 0 20rpx 20rpx 0;
+}
+.hot-words.hot{
+   border:2rpx solid #c49a58;
+}
+
+/* 搜索结果 */
+.search-result{
+  display: block;
+  width:690rpx;
+  margin:0 auto;
+}
+.search-result-list{
+  display: block;
+  width: 690rpx;
+  height: 108rpx;
+  line-height: 108rpx;
+  font-size:30rpx;
+  color:#bbb; 
+  border-bottom: 1px solid #f4f4f4; 
+}
+.search-result-list .result-font{
+  color:#000;
+}

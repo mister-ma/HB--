@@ -1,0 +1,41 @@
+<view class="container">
+  <!-- 搜索框 -->
+  <form bindsubmit="onSearchGoodsDetail" report-submit='true' class="search-goods-detail">
+    <view class="search-left">
+      <input type="text" id="searchOrderId" placeholder="搜索喜欢的商品" bindinput="orderIdInput" bindfocus="orderIdFocus" bindblur="orderIdBlur" placeholder-style="color:#b3cad6; font-size:30rpx;margin-left:50rpx;" value="{{searchKeyWord}}"/>
+      <image wx:if="{{onInput}}" src="../../../images/LT-index-search.png" class="search-icon"></image>
+      <image wx:if="{{isSearch}}" src="../../../images/LT-search-cha.png" class="search-cha" catchtap='onSearchChaTap'></image>
+    </view>
+    
+    <button wx:if="{{!isSearch}}"  class="search-orderId-btn" catchtap="onSearchCancel">取消</button>
+    <button wx:if="{{isSearch}}" form-type="submit" class="search-orderId-btn on">搜索</button>
+  </form>
+  <!--历史搜索-->
+  <view class="search-line"></view>
+  <view wx:if="{{historySearch && historySearch.length>0}}" class="recommend-search">
+    <view style="overflow:hidden;">
+      <text class="recommend-search-title">历史搜索</text>
+      <image  src="../../../images/LT-search-clear.png" class="search-clear" bindtap="onClearSearch" ></image>
+    </view>
+    <view class="recommend-search-list">
+      <block wx:for="{{historySearch}}" wx:for-item="item" wx:key="idx" >
+        <text class="hot-words" catchtap='onSearchHot' data-val="{{item}}">{{item}}</text>
+      </block>
+    </view> 
+  </view>
+
+  <!--热门搜索-->
+  <view class="search-line"></view>
+  <view class="recommend-search">
+    <view style="overflow:hidden;">
+      <text class="recommend-search-title hot">热门搜索</text>
+    </view>
+    <view class="recommend-search-list">
+      <block wx:for="{{hotSearch}}" wx:for-item="item" wx:key="idx" >
+        <text class="hot-words hot" catchtap='onSearchHot' data-val="{{item}}">{{item}}</text>
+      </block>
+    </view> 
+  </view>
+  
+  
+</view>
